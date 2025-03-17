@@ -47,3 +47,17 @@ resource "aws_medialive_input" "rtmp_input" {
 
   role_arn = aws_iam_role.medialive_role.arn
 }
+output "medialive_input_id" {
+  description = "The ID of the MediaLive RTMP input"
+  value       = aws_medialive_input.rtmp_input.id
+}
+
+output "medialive_input_arn" {
+  description = "The ARN of the MediaLive RTMP input"
+  value       = aws_medialive_input.rtmp_input.arn
+}
+
+output "medialive_input_destinations" {
+  description = "RTMP endpoint URLs for streaming"
+  value       = aws_medialive_input.rtmp_input.destinations[*].url
+}
