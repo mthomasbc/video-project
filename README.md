@@ -93,7 +93,7 @@ This Terraform configuration was created to automate the setup of an AWS MediaLi
 ## Architectural Diagram
 This shows the flow from the live event source all the way to the end user.
 
-![Diagram](images\diagram.png)
+![Diagram](./images/diagram.png)
 
 1. Live Event Site (Camera & Encoder) → Captures and encodes the video feed.
 2. AWS MediaLive (Stream Processing) → Handles the RTMP/SRT stream from the encoder.
