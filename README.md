@@ -90,3 +90,13 @@ ffmpeg -i input.mp4 -vf "pad=width:height:(ow-iw)/2:(oh-ih)/2" output.mp4
 ## Author
 This Terraform configuration was created to automate the setup of an AWS MediaLive RTMP input for live streaming.
 
+## Architectural Diagram
+This shows the flow from the live event source all the way to the end user.
+
+![Diagram](images\diagram.png)
+
+1. Live Event Site (Camera & Encoder) → Captures and encodes the video feed.
+2. AWS MediaLive (Stream Processing) → Handles the RTMP/SRT stream from the encoder.
+3. AWS MediaPackage (Transcoding & Packaging) → Converts video into HLS/DASH for adaptive streaming.
+4. Amazon CloudFront (Content Delivery Network - CDN) → Distributes the stream globally with low latency.
+5. End User Devices (Web, Mobile, TV) → Viewers watch the live stream.
