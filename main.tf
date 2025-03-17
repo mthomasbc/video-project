@@ -19,6 +19,17 @@ resource "aws_iam_role" "medialive_role" {
 }
 EOF
 }
+resource "aws_security_group" "medialive_sg" {
+  name_prefix = "medialive-sg"
+  description = "Security group for MediaLive RTMP input"
+
+  ingress {
+    from_port   = 1935
+    to_port     = 1935
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"] # Change this to restrict access
+  }
+}
 
 resource "aws_medialive_input" "rtmp_input" {
   name = "MyRTMPInput"
