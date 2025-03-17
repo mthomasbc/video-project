@@ -59,5 +59,5 @@ output "medialive_input_arn" {
 
 output "medialive_input_destinations" {
   description = "RTMP endpoint URLs for streaming"
-  value       = aws_medialive_input.rtmp_input.destinations[*].url
+  value       = aws_medialive_input.rtmp_input.destinations[*]
 }
