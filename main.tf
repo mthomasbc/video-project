@@ -27,13 +27,19 @@ resource "aws_security_group" "medialive_sg" {
     from_port   = 1935
     to_port     = 1935
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"] # Change this to restrict access
+    cidr_blocks = ["0.0.0.0/0"] 
+  }
+}
+resource "aws_medialive_input_security_group" "medialive_security" {
+  whitelist_rules {
+    cidr = "0.0.0.0/0" 
   }
 }
 
 resource "aws_medialive_input" "rtmp_input" {
-  name = "MyRTMPInput"
-  type = "RTMP_PUSH"
+  name          = "MyRTMPInput"
+  type          = "RTMP_PUSH"
+  input_security_groups = [aws_medialive_input_security_group.medialive_security.id]
 
   destinations {
     stream_name = "my-stream"
